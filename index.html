@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ved Bhisekar — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --panel: #181818;
+    --panel-hover: #232323;
+    --ink: #ffffff;
+    --muted: #a7a7a7;
+    --line: #2a2a2a;
+    --accent: #1ed760;
+    --accent-dim: #14532d;
+    --web: #2c5ee8;
+    --game: #b34cf0;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* layout: sidebar + main */
+  .shell {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 100vh;
+  }
+
+  aside {
+    background: #000000;
+    padding: 28px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .brand .mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #08130a;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+
+  .brand span.name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+  }
+
+  .sidenav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .sidenav a {
+    display: block;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .sidenav a:hover {
+    color: var(--ink);
+    background: var(--panel);
+  }
+
+  main {
+    padding: 44px 40px 90px;
+    max-width: 980px;
+  }
+
+  /* top mobile bar (hidden on desktop) */
+  .topbar { display: none; }
+
+  /* greeting + quick grid */
+  .greeting {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+
+  h1.name {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 34px;
+  }
+
+  .quickgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 60px;
+  }
+
+  .quickcard {
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 16px;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+  .quickcard:hover {
+    background: var(--panel-hover);
+    transform: translateY(-2px);
+  }
+
+  .quickcard .tag {
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .quickcard .label {
+    font-weight: 600;
+    font-size: 0.98rem;
+  }
+
+  /* sections */
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 20px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .panel {
+    background: var(--panel);
+    border-radius: 10px;
+    padding: 24px 26px;
+  }
+
+  .panel p {
+    color: #d6d6d6;
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  /* education row */
+  .edu-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .edu-row .school {
+    font-weight: 600;
+  }
+
+  .edu-row .when {
+    color: var(--muted);
+    font-size: 0.88rem;
+    background: #0d0d0d;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  /* skills as pills */
+  .pillrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pill {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: border-color 0.15s ease;
+  }
+
+  .pill:hover {
+    border-color: var(--accent);
+  }
+
+  .skills-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 16px;
+  }
+
+  /* interest genre-style cards */
+  .genrerow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .genrecard {
+    border-radius: 10px;
+    padding: 22px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .genrecard.web { background: linear-gradient(135deg, var(--web), #16234f); }
+  .genrecard.game { background: linear-gradient(135deg, var(--game), #2c1440); }
+
+  .genrecard h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .genrecard p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 30ch;
+  }
+
+  /* hobbies */
+  .hobby-list {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .hobby-list li {
+    list-style: none;
+    background: var(--panel);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  /* contact */
+  .contact-panel {
+    background: var(--panel);
+    border-radius: 10px;
+    padding: 28px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .contact-panel p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 11px 22px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  .btn-accent {
+    background: var(--accent);
+    color: #08130a;
+  }
+
+  .btn-accent:hover { background: #1fdb69; }
+
+  .btn-outline {
+    border: 1.5px solid var(--line);
+    color: var(--ink);
+  }
+
+  .btn-outline:hover { border-color: var(--ink); }
+
+  .cta-group { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  footer.foot {
+    color: #5f5f5f;
+    font-size: 0.82rem;
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+
+  /* responsive */
+  @media (max-width: 800px) {
+    .shell { grid-template-columns: 1fr; }
+    aside { display: none; }
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .topbar .mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--accent); color: #08130a;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.8rem;
+    }
+    .topbar .navlinks {
+      display: flex; gap: 16px; margin-left: auto; overflow-x: auto;
+      list-style: none; padding: 0;
+    }
+    .topbar .navlinks a { color: var(--muted); font-size: 0.85rem; white-space: nowrap; }
+    main { padding: 30px 20px 70px; }
+    .quickgrid { grid-template-columns: 1fr 1fr; }
+    .genrerow { grid-template-columns: 1fr; }
+    h1.name { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside>
+    <div class="brand">
+      <div class="mark">VB</div>
+      <span class="name">Ved Bhisekar</span>
+    </div>
+    <ul class="sidenav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#interests">Interests</a></li>
+      <li><a href="#hobbies">Hobbies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </aside>
+
+  <div>
+    <div class="topbar">
+      <div class="mark">VB</div>
+      <ul class="navlinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#interests">Interests</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <main>
+
+      <p class="greeting">Welcome to my portfolio</p>
+      <h1 class="name">Ved Bhisekar</h1>
+      <p class="subtitle">Second-year Software Engineering student</p>
+
+      <div class="quickgrid">
+        <a class="quickcard" href="#about">
+          <div class="tag">Profile</div>
+          <div class="label">About me</div>
+        </a>
+        <a class="quickcard" href="#skills">
+          <div class="tag">Toolkit</div>
+          <div class="label">Skills</div>
+        </a>
+        <a class="quickcard" href="#interests">
+          <div class="tag">Focus</div>
+          <div class="label">Interests</div>
+        </a>
+        <a class="quickcard" href="#contact">
+          <div class="tag">Reach out</div>
+          <div class="label">Contact</div>
+        </a>
+      </div>
+
+      <section id="about">
+        <div class="section-head"><h2>About</h2></div>
+        <div class="panel">
+          <p>
+            I'm in my second year of B.Tech in Software Engineering, still working
+            out exactly where I want to specialize. For now I enjoy learning by
+            building — picking a small project, figuring out how it's put
+            together, and getting it working.
+          </p>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="section-head"><h2>Education</h2></div>
+        <div class="panel edu-row">
+          <span class="school">MIT Academy of Engineering</span>
+          <span class="when">B.Tech, Software Engineering</span>
+          <span class="when">2025 &ndash; Present</span>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-head"><h2>Skills</h2></div>
+        <div class="pillrow">
+          <span class="pill">HTML</span>
+          <span class="pill">CSS</span>
+          <span class="pill">Python</span>
+          <span class="pill">Linux</span>
+        </div>
+        <p class="skills-note">Still early with all of these — building on the basics as I take on more projects.</p>
+      </section>
+
+      <section id="interests">
+        <div class="section-head"><h2>Interests</h2></div>
+        <div class="genrerow">
+          <div class="genrecard web">
+            <h3>Web Development</h3>
+            <p>Building things for the browser — this site included.</p>
+          </div>
+          <div class="genrecard game">
+            <h3>Game Development</h3>
+            <p>Curious how games are built, from mechanics to code.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="hobbies">
+        <div class="section-head"><h2>Outside of coursework</h2></div>
+        <ul class="hobby-list">
+          <li>Reading</li>
+          <li>Listening to music</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <div class="section-head"><h2>Contact</h2></div>
+        <div class="contact-panel">
+          <p>Want to get in touch? Reach me here.</p>
+          <div class="cta-group">
+            <a class="btn btn-accent" href="mailto:your.email@example.com">Email me</a>
+            <a class="btn btn-outline" href="#" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="foot">&copy; 2026 Ved Bhisekar</footer>
+
+    </main>
+  </div>
+
+</div>
+
+</body>
+</html>
