@@ -1,6 +1,6 @@
 single-page personal portfolio site built with plain HTML and CSS.
 
-🔗 Live site: add your GitHub Pages / hosting link here
+🔗 Live site: https://vedbhisekar7.github.io/PORTFOLIO./
 
 About
 
